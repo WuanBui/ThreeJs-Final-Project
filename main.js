@@ -142,6 +142,19 @@ async function crossfadeAudio(newAudioFile) {
 }
 
 async function switchScene(sceneNumber) {
+  const container = document.getElementById("my-container");
+  if (!container) {
+    console.error("Container not found!");
+    return;
+  }
+
+  // Add fade-out effect
+  container.style.transition = "opacity 2s, background-color 2s";
+  container.style.opacity = "0";
+  container.style.backgroundColor = "black";
+
+  await new Promise((resolve) => setTimeout(resolve, 2000)); // Wait for the fade-out duration
+
   // Dispose and clear previous scenes
   if (currentScene !== null) dispose3DScene(currentScene);
   clearScene();
@@ -150,9 +163,6 @@ async function switchScene(sceneNumber) {
   try {
     const sceneElement = await loadScene(sceneNumber);
     sceneElement.style.display = "block";
-    setTimeout(() => {
-      sceneElement.classList.add("visible");
-    }, 0); // Apply transition
     currentScene = sceneNumber;
 
     // Play the audio for the new scene if available
@@ -163,6 +173,16 @@ async function switchScene(sceneNumber) {
     }
 
     saveCurrentScene(sceneNumber);  // Save the current scene to localStorage
+
+    // Add fade-in effect
+    container.style.opacity = "0"; // Ensure opacity is 0 before starting fade-in
+    container.style.backgroundColor = "black";
+    await new Promise((resolve) => setTimeout(resolve, 300)); // Small delay to trigger CSS transition
+
+    container.style.transition = "opacity 2s";
+    container.style.opacity = "1";
+    container.style.backgroundColor = "black";
+
   } catch (error) {
     console.error("Error switching scene:", error);
   }

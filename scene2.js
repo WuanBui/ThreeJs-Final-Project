@@ -87,8 +87,8 @@ function setupSidewalk() {
         snowmanModelPath,
         (gltf) => {
             const snowmanModel = gltf.scene;
-            snowmanModel.scale.set(50, 50, 50);
-            snowmanModel.position.set(50, -12, -16); // Adjust the position as needed
+            snowmanModel.scale.set(70, 70, 70);
+            snowmanModel.position.set(100, -16, 20); // Adjust the position as needed
             // snowmanModel.rotation.y = Math.PI / -0.3  ;
 
             scene.add(snowmanModel);
@@ -116,9 +116,9 @@ function setupCar3() {
         snowmanModelPath,
         (gltf) => {
             const snowmanModel = gltf.scene;
-            snowmanModel.scale.set(24, 24, 24);
-            snowmanModel.position.set(10, -1, -170); // Adjust the position as needed
-            snowmanModel.rotation.y = Math.PI / 2;
+            snowmanModel.scale.set(24.5, 24.5, 24.5);
+            snowmanModel.position.set(4, -1, -180); // Adjust the position as needed
+            snowmanModel.rotation.y = Math.PI / 1.7;
 
 
             scene.add(snowmanModel);
@@ -129,7 +129,7 @@ function setupCar3() {
                 const action = mixer.clipAction(gltf.animations[0]); // Use the first animation
 
 
-                action.timeScale = 0.5;
+                action.timeScale = 0.75;
                 action.play();
 
                 // Add the mixer to an array for updating during rendering
@@ -152,7 +152,7 @@ function setupCar4() {
         (gltf) => {
             const snowmanModel = gltf.scene;
             snowmanModel.scale.set(3, 3, 3);
-            snowmanModel.position.set(70, 0, -160); // Adjust the position as needed
+            snowmanModel.position.set(70, 0, -170); // Adjust the position as needed
             snowmanModel.rotation.y = Math.PI / 1.1;
 
             
@@ -179,37 +179,7 @@ function setupCar4() {
 }
 
 
-function setupGirl() {
-    const gltfLoader = new GLTFLoader();
-    const snowmanModelPath = "./assets/girl/scene.gltf";
 
-    gltfLoader.load(
-        snowmanModelPath,
-        (gltf) => {
-            const snowmanModel = gltf.scene;
-            snowmanModel.scale.set(4, 4, 4);
-            snowmanModel.position.set(-55, 0, 45); // Adjust the position as needed
-            snowmanModel.rotation.y = Math.PI / -3.2;
-
-
-            scene.add(snowmanModel);
-
-            // Check for animations in the loaded model
-            if (gltf.animations.length > 0) {
-                const mixer = new THREE.AnimationMixer(snowmanModel);
-                const action = mixer.clipAction(gltf.animations[0]); // Use the first animation
-                action.play();
-
-                // Add the mixer to an array for updating during rendering
-                animationMixers.push(mixer);
-            }
-        },
-        undefined,
-        (error) => {
-            console.error("Error loading snowmann model:", error);
-        }
-    );
-}
 
 
 
@@ -295,8 +265,8 @@ export function initScene2() {
 
     // scene.background = new THREE.Color(0xcaeef9);
 
-    camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 0.1, 4000);
-    camera.position.set(235, 100, -900);
+    camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 4000);
+    camera.position.set(230, 130, -900);
 
 
     renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
