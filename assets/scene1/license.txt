@@ -1,0 +1,11 @@
+Model Information:
+* title:	James Street North Graffiti
+* source:	https://sketchfab.com/3d-models/james-street-north-graffiti-e53406351d2d4ce99cdf8e3348fde83b
+* author:	John Bolton (https://sketchfab.com/not_lob)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "James Street North Graffiti" (https://sketchfab.com/3d-models/james-street-north-graffiti-e53406351d2d4ce99cdf8e3348fde83b) by John Bolton (https://sketchfab.com/not_lob) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

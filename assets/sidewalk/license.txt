@@ -1,0 +1,11 @@
+Model Information:
+* title:	Road 04
+* source:	https://sketchfab.com/3d-models/road-04-7f5930ae704f46288ae9579d0abe7a47
+* author:	Forest Run Forever (https://sketchfab.com/2w)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Road 04" (https://sketchfab.com/3d-models/road-04-7f5930ae704f46288ae9579d0abe7a47) by Forest Run Forever (https://sketchfab.com/2w) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

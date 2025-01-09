@@ -1,0 +1,11 @@
+Model Information:
+* title:	Airtsel Valor Proiettile
+* source:	https://sketchfab.com/3d-models/airtsel-valor-proiettile-25896d049f024196a9f75bed9955b565
+* author:	Yudha Mfr (https://sketchfab.com/yudhamfr)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Airtsel Valor Proiettile" (https://sketchfab.com/3d-models/airtsel-valor-proiettile-25896d049f024196a9f75bed9955b565) by Yudha Mfr (https://sketchfab.com/yudhamfr) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

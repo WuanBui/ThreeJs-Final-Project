@@ -1,0 +1,11 @@
+Model Information:
+* title:	Travis Pastrana Nitro Circus Dirt Bike
+* source:	https://sketchfab.com/3d-models/travis-pastrana-nitro-circus-dirt-bike-d536eec622954ebb9442817d1af777e4
+* author:	johnnokomis (https://sketchfab.com/johnnokomis)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Travis Pastrana Nitro Circus Dirt Bike" (https://sketchfab.com/3d-models/travis-pastrana-nitro-circus-dirt-bike-d536eec622954ebb9442817d1af777e4) by johnnokomis (https://sketchfab.com/johnnokomis) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

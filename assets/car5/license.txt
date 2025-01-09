@@ -1,0 +1,11 @@
+Model Information:
+* title:	Honda JDM
+* source:	https://sketchfab.com/3d-models/honda-jdm-a337d250942a4e7384192dc678612abd
+* author:	Arslon.Aminboyv™ (https://sketchfab.com/RxARSLON)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Honda JDM" (https://sketchfab.com/3d-models/honda-jdm-a337d250942a4e7384192dc678612abd) by Arslon.Aminboyv™ (https://sketchfab.com/RxARSLON) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

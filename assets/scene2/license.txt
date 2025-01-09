@@ -1,0 +1,11 @@
+Model Information:
+* title:	Day 146: mural by Gianni Lee
+* source:	https://sketchfab.com/3d-models/day-146-mural-by-gianni-lee-b7034d7ce1cb4994af65132e15ad3b7b
+* author:	alban (https://sketchfab.com/alban)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Day 146: mural by Gianni Lee" (https://sketchfab.com/3d-models/day-146-mural-by-gianni-lee-b7034d7ce1cb4994af65132e15ad3b7b) by alban (https://sketchfab.com/alban) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

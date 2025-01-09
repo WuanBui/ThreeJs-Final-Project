@@ -1,0 +1,11 @@
+Model Information:
+* title:	1999 Nissan Skyline LBWK Super Silhouette
+* source:	https://sketchfab.com/3d-models/1999-nissan-skyline-lbwk-super-silhouette-224e37db8cfb49b0be385e6864ad213b
+* author:	DisneyCars (https://sketchfab.com/supercarmodels)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "1999 Nissan Skyline LBWK Super Silhouette" (https://sketchfab.com/3d-models/1999-nissan-skyline-lbwk-super-silhouette-224e37db8cfb49b0be385e6864ad213b) by DisneyCars (https://sketchfab.com/supercarmodels) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

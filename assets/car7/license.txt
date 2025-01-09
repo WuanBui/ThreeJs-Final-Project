@@ -1,0 +1,11 @@
+Model Information:
+* title:	2010 Mercedes-Benz SLS AMG GT3
+* source:	https://sketchfab.com/3d-models/2010-mercedes-benz-sls-amg-gt3-fcc00546309e47f78031280810f9df79
+* author:	DisneyCars (https://sketchfab.com/supercarmodels)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "2010 Mercedes-Benz SLS AMG GT3" (https://sketchfab.com/3d-models/2010-mercedes-benz-sls-amg-gt3-fcc00546309e47f78031280810f9df79) by DisneyCars (https://sketchfab.com/supercarmodels) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
