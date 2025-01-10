@@ -27,7 +27,7 @@ function setupSkybox() {
 
 function setupLights() {
   // General ambient light for the whole scene
-  const ambientLight = new THREE.AmbientLight(0x666666, 1.5);
+  const ambientLight = new THREE.AmbientLight(0x666666, 1);
   scene.add(ambientLight);
 
   // Directional light for simulating sunlight

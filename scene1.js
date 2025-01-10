@@ -12,6 +12,7 @@ const maxRange = 700;
 const minRange = maxRange / 2;
 const textureSize = 32.0;
 
+
 function setupSkybox() {
   const loader = new THREE.CubeTextureLoader();
   const texture = loader.load([
@@ -27,7 +28,7 @@ function setupSkybox() {
 }
 
 function setupLights() {
-  const ambientLight = new THREE.AmbientLight(0x89aaff, 1.2); // Cool ambient light
+  const ambientLight = new THREE.AmbientLight(0x89aaff, 1); // Cool ambient light
   scene.add(ambientLight);
 
   const directionalLight = new THREE.DirectionalLight(0xddeeff, 1.5);
@@ -147,7 +148,6 @@ function setupBrandon() {
       if (gltf.animations.length > 0) {
         const mixer = new THREE.AnimationMixer(snowmanModel);
         const action = mixer.clipAction(gltf.animations[0]); // Use the first animation
-
         action.timeScale = 0.99;
         action.play();
 
@@ -161,6 +161,7 @@ function setupBrandon() {
     }
   );
 }
+
 
 function disposeScene() {
   // Dispose renderer
@@ -220,6 +221,7 @@ function getTexture() {
   texture.needsUpdate = true;
   return texture;
 }
+
 
 function setupSnowParticles() {
   const pointGeometry = new THREE.BufferGeometry();
@@ -324,6 +326,7 @@ export function initScene1() {
 
   window.addEventListener("resize", onResize);
   document.getElementById("my-container").appendChild(renderer.domElement);
+
   document.addEventListener("keydown", (event) => {
     if (event.key === "r") {
       // Reset camera
@@ -331,6 +334,7 @@ export function initScene1() {
       orbitControls.update();
     }
   });
+
   requestAnimationFrame(render);
 }
 

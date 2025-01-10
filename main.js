@@ -5,6 +5,7 @@ let isAudioUnlocked = false; // Flag to track whether audio playback is allowed
 
 let sceneCache = {};
 
+
 const scenes = {
   1: {
     module: './scene1.js',

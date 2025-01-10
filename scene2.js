@@ -30,14 +30,14 @@ function setupLights() {
   const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
   scene.add(ambientLight);
 
-  const sunLight = new THREE.DirectionalLight(0xffd27f, 1.5);
+  const sunLight = new THREE.DirectionalLight(0xffd27f, 1);
   sunLight.position.set(300, 400, -200);
   sunLight.castShadow = true;
   sunLight.shadow.mapSize.width = 2048;
   sunLight.shadow.mapSize.height = 2048;
   scene.add(sunLight);
 
-  const backLight = new THREE.DirectionalLight(0xcce7ff, 0.5);
+  const backLight = new THREE.DirectionalLight(0xcce7ff, 1);
   backLight.position.set(-200, 100, 300);
   scene.add(backLight);
 }
