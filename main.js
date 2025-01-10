@@ -223,7 +223,7 @@ function createSceneMenu(parentElement = document.body) {
   menu.style.textAlign = "center";
 
   const description = document.createElement("p");
-  description.textContent = "Welcome to my 3D project! Select a scene to explore! Click a button below to switch scenes.";
+  description.textContent = "Select a scene to explore! Click a button below to switch scenes.";
   description.style.marginBottom = "7px";
   description.style.marginTop = "7px";
 
@@ -240,7 +240,7 @@ function createSceneMenu(parentElement = document.body) {
   Object.keys(scenes).forEach((sceneNumber) => {
     const button = document.createElement("button");
     button.textContent = scenes[sceneNumber].name;
-    button.style.margin = "5px";
+    button.style.margin = "3px";
     button.style.padding = "10px 20px";
     button.style.fontSize = "1.2em";
     button.style.border = "none";

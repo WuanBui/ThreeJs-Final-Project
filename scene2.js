@@ -200,6 +200,34 @@ function setupTracy() {
   );
 }
 
+function disposeScene() {
+    // Dispose renderer
+    renderer.dispose();
+  
+    // Dispose particles
+    if (particles) {
+      particles.geometry.dispose();
+      particles.material.dispose();
+    }
+  
+    // Dispose animation mixers
+    animationMixers.forEach((mixer) => mixer.uncacheRoot(mixer.getRoot()));
+  
+    // Traverse the scene and dispose of geometries and materials
+    scene.traverse((object) => {
+      if (object.isMesh) {
+        if (object.geometry) object.geometry.dispose();
+        if (object.material) {
+          if (Array.isArray(object.material)) {
+            object.material.forEach((mat) => mat.dispose());
+          } else {
+            object.material.dispose();
+          }
+        }
+      }
+    });
+  }
+
 function drawRadialGradation(ctx, canvasRadius, canvasW, canvasH) {
   ctx.save();
   const gradient = ctx.createRadialGradient(
@@ -355,6 +383,7 @@ export function initScene2() {
   setupCar4();
   setupSkybox();
   setupTracy();
+  disposeScene();
 
   window.addEventListener("resize", onResize);
   document.getElementById("my-container").appendChild(renderer.domElement);
