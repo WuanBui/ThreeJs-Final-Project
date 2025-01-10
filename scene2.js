@@ -117,8 +117,8 @@ function setupCar3() {
         (gltf) => {
             const snowmanModel = gltf.scene;
             snowmanModel.scale.set(24.5, 24.5, 24.5);
-            snowmanModel.position.set(4, -1, -180); // Adjust the position as needed
-            snowmanModel.rotation.y = Math.PI / 1.7;
+            snowmanModel.position.set(10, -1, -185); // Adjust the position as needed
+            snowmanModel.rotation.y = Math.PI / 1.8;
 
 
             scene.add(snowmanModel);
@@ -152,8 +152,8 @@ function setupCar4() {
         (gltf) => {
             const snowmanModel = gltf.scene;
             snowmanModel.scale.set(3, 3, 3);
-            snowmanModel.position.set(70, 0, -170); // Adjust the position as needed
-            snowmanModel.rotation.y = Math.PI / 1.1;
+            snowmanModel.position.set(75, 0, -170); // Adjust the position as needed
+            snowmanModel.rotation.y = Math.PI / 1.3;
 
             
             scene.add(snowmanModel);
@@ -163,7 +163,42 @@ function setupCar4() {
                 const mixer = new THREE.AnimationMixer(snowmanModel);
                 const action = mixer.clipAction(gltf.animations[0]); // Use the first animation
 
-                action.timeScale = 2;
+                action.timeScale = 1.5;
+                action.play();
+
+                // Add the mixer to an array for updating during rendering
+                animationMixers.push(mixer);
+    
+            }
+        },
+        undefined,
+        (error) => {
+            console.error("Error loading snowmann model:", error);
+        }
+    );
+}
+
+function setupTracy() {
+    const gltfLoader = new GLTFLoader();
+    const snowmanModelPath = "./assets/tracy/scene.gltf";
+
+    gltfLoader.load(
+        snowmanModelPath,
+        (gltf) => {
+            const snowmanModel = gltf.scene;
+            snowmanModel.scale.set(18, 18, 18);
+            snowmanModel.position.set(50, 0, -205); // Adjust the position as needed
+            snowmanModel.rotation.y = Math.PI / 1.2;
+
+            
+            scene.add(snowmanModel);
+
+            // Check for animations in the loaded model
+            if (gltf.animations.length > 0) {
+                const mixer = new THREE.AnimationMixer(snowmanModel);
+                const action = mixer.clipAction(gltf.animations[0]); // Use the first animation
+
+                action.timeScale = 1.5;
                 action.play();
 
                 // Add the mixer to an array for updating during rendering
@@ -265,8 +300,8 @@ export function initScene2() {
 
     // scene.background = new THREE.Color(0xcaeef9);
 
-    camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 4000);
-    camera.position.set(230, 130, -900);
+    camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 4000);
+    camera.position.set(230, 120, -900);
 
 
     renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
@@ -326,6 +361,7 @@ export function initScene2() {
     setupCar3();
     setupCar4();
     setupSkybox();
+    setupTracy();
 
 
     window.addEventListener('resize', onResize);

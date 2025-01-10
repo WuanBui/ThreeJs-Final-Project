@@ -153,15 +153,15 @@ function setupCar6() {
 
 function setupDriver() {
     const gltfLoader = new GLTFLoader();
-    const snowmanModelPath = "./assets/driver/scene.gltf";
+    const snowmanModelPath = "./assets/brandon4/scene.gltf";
 
     gltfLoader.load(
         snowmanModelPath,
         (gltf) => {
             const snowmanModel = gltf.scene;
             snowmanModel.scale.set(9, 9, 9);
-            snowmanModel.position.set(80, 5, -150); // Adjust the position as needed
-            snowmanModel.rotation.y = Math.PI / -1.25;
+            snowmanModel.position.set(57, 6.5, -191); // Adjust the position as needed
+            snowmanModel.rotation.y = Math.PI / -0.9;
         
 
             scene.add(snowmanModel);
@@ -170,6 +170,8 @@ function setupDriver() {
             if (gltf.animations.length > 0) {
                 const mixer = new THREE.AnimationMixer(snowmanModel);
                 const action = mixer.clipAction(gltf.animations[0]); // Use the first animation
+
+                // action.timeScale = 1;
                 action.play();
 
                 // Add the mixer to an array for updating during rendering

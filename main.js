@@ -9,28 +9,28 @@ const scenes = {
   1: { 
     module: './scene1.js', 
     init: 'initScene1', 
-    audio: './sound/scene1.1.mp3', 
+    audio: './sound/scene1f.mp3', 
     name: 'Drift Cars',
     description: 'Drift cars are specially modified vehicles designed for controlled sliding around corners at high speeds. Built for precision and handling, they feature upgraded suspension, tires, and power delivery systems.' 
   },
   2: { 
     module: './scene2.js', 
     init: 'initScene2', 
-    audio: './sound/scene2.1.mp3', 
+    audio: './sound/scene2f.mp3', 
     name: 'Grand Tourer Cars',
     description: 'Grand Tourer (GT) cars are high-performance vehicles designed for long-distance driving with a focus on comfort, style, and speed. Combining luxury with athleticism, they often feature powerful engines, refined interiors, and advanced technology.' 
   },
   3: { 
     module: './scene3.js', 
     init: 'initScene3', 
-    audio: './sound/scene3.1.mp3', 
+    audio: './sound/scene4f.mp3', 
     name: 'Dirt Bikes',
     description: 'Dirt bikes are lightweight motorcycles designed for off-road riding on rough terrains like dirt trails, mud, and sand. Built for durability and agility, they feature knobby tires, long suspension travel, and high ground clearance.' 
   },
   4: { 
     module: './scene4.js', 
     init: 'initScene4', 
-    audio: './sound/scene4.1.mp3', 
+    audio: './sound/scene3ff.mp3', 
     name: 'Drag Cars',
     description: 'Drag cars are high-performance vehicles built for straight-line racing, typically over a quarter-mile distance. They are designed for maximum speed and acceleration, featuring powerful engines, lightweight frames, and specialized tires.' 
   },
@@ -117,10 +117,18 @@ function displaySceneDescription(description) {
     descriptionElement.style.wordWrap = "break-word"; // Ensure long words break properly
     descriptionElement.style.overflowWrap = "break-word"; // For better browser compatibility
     descriptionElement.style.whiteSpace = "normal"; // Allow wrapping
+    descriptionElement.style.transition = "opacity 1.5s ease"; // Add transition effect
+    descriptionElement.style.opacity = "0"; // Start as hidden
     document.body.appendChild(descriptionElement);
   }
 
-  descriptionElement.textContent = description;
+  descriptionElement.style.opacity = "0"; // Fade out existing description
+  setTimeout(() => {
+    descriptionElement.textContent = description;
+    descriptionElement.style.opacity = "1"; // Fade in new description
+  }, 1500); // Delay to match fade-out duration
+
+  // Add fade-out when switching scenes
 }
 
 async function crossfadeAudio(newAudioFile) {

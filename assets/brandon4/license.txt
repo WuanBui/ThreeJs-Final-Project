@@ -1,0 +1,11 @@
+Model Information:
+* title:	Brandon Playing Drums
+* source:	https://sketchfab.com/3d-models/brandon-playing-drums-6ea7d06ddacd480ea9bf786bfb57a38e
+* author:	Decentralized (https://sketchfab.com/decentralized13)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Brandon Playing Drums" (https://sketchfab.com/3d-models/brandon-playing-drums-6ea7d06ddacd480ea9bf786bfb57a38e) by Decentralized (https://sketchfab.com/decentralized13) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

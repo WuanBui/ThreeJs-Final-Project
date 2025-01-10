@@ -145,6 +145,41 @@
     }
 
 
+    function setupBrandon() {
+        const gltfLoader = new GLTFLoader();
+        const snowmanModelPath = "./assets/brandon/scene.gltf";
+
+        gltfLoader.load(
+            snowmanModelPath,
+            (gltf) => {
+                const snowmanModel = gltf.scene;
+                snowmanModel.scale.set(19, 19, 19);
+                snowmanModel.position.set(28, -17.8, -40); // Adjust the position as needed
+                snowmanModel.rotation.y = Math.PI / 1.3 ;
+            
+
+                scene.add(snowmanModel);
+
+                // Check for animations in the loaded model
+                if (gltf.animations.length > 0) {
+                    const mixer = new THREE.AnimationMixer(snowmanModel);
+                    const action = mixer.clipAction(gltf.animations[0]); // Use the first animation
+
+                    action.timeScale = 0.99;
+                    action.play();
+
+                    // Add the mixer to an array for updating during rendering
+                    animationMixers.push(mixer);
+                }
+            },
+            undefined,
+            (error) => {
+                console.error("Error loading snowmann model:", error);
+            }
+        );
+    }
+
+
     function drawRadialGradation(ctx, canvasRadius, canvasW, canvasH) {
         ctx.save();
         const gradient = ctx.createRadialGradient(canvasRadius, canvasRadius, 0, canvasRadius, canvasRadius, canvasRadius);
@@ -269,6 +304,7 @@
         setupCar2();
         setupSkybox();
         setupSnowParticles();
+        setupBrandon();
 
 
         window.addEventListener('resize', onResize);

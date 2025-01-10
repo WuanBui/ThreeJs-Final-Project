@@ -173,6 +173,33 @@ function setupHelmet() {
 }
 
 
+function setupBrandon() {
+  const gltfLoader = new GLTFLoader();
+  const snowmanModelPath = "./assets/brandon1/scene.gltf";
+
+  gltfLoader.load(
+    snowmanModelPath,
+    (gltf) => {
+      const model = gltf.scene;
+      model.scale.set(40, 40, 40);
+      model.position.set(200, -31, 55);
+      model.rotation.y = Math.PI / 1.5;
+      scene.add(model);
+      if (gltf.animations.length > 0) {
+        const mixer = new THREE.AnimationMixer(model);
+        const action = mixer.clipAction(gltf.animations[0]);
+        action.play();
+        animationMixers.push(mixer);
+      }
+    },
+    undefined,
+    (error) => {
+      console.error("Error loading model:", error);
+    }
+  );
+}
+
+
 
 function drawRadialGradation(ctx, canvasRadius, canvasW, canvasH) {
   ctx.save();
@@ -257,12 +284,12 @@ export function initScene3() {
   // scene.background = new THREE.Color(0xcaeef9);
 
   camera = new THREE.PerspectiveCamera(
-    30,
+    35,
     window.innerWidth / window.innerHeight,
     0.1,
     4000
   );
-  camera.position.set(750, 50, 150);
+  camera.position.set(800, 50, 150);
 
   renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
   renderer.setSize(window.innerWidth, window.innerHeight);
@@ -331,6 +358,7 @@ export function initScene3() {
   setupDirtbike1();
   setupHelmet();
   setupSkybox();
+  setupBrandon();
 
   window.addEventListener("resize", onResize);
   document.getElementById("my-container").appendChild(renderer.domElement);
