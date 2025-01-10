@@ -6,77 +6,89 @@ let isAudioUnlocked = false; // Flag to track whether audio playback is allowed
 let sceneCache = {};
 
 const scenes = {
-  1: { 
-    module: './scene1.js', 
-    init: 'initScene1', 
-    audio: './sound/scene1f.mp3', 
+  1: {
+    module: './scene1.js',
+    init: 'initScene1',
+    audio: './sound/scene1f.mp3',
     name: 'Drift Cars',
-    description: 'Drift cars are specially modified vehicles designed for controlled sliding around corners at high speeds. Built for precision and handling, they feature upgraded suspension, tires, and power delivery systems.' 
+    description: 'Drift cars are specially modified vehicles designed for controlled sliding around corners at high speeds. Built for precision and handling, they feature upgraded suspension, tires, and power delivery systems.'
   },
-  2: { 
-    module: './scene2.js', 
-    init: 'initScene2', 
-    audio: './sound/scene2f.mp3', 
+  2: {
+    module: './scene2.js',
+    init: 'initScene2',
+    audio: './sound/scene2f.mp3',
     name: 'Grand Tourer Cars',
-    description: 'Grand Tourer (GT) cars are high-performance vehicles designed for long-distance driving with a focus on comfort, style, and speed. Combining luxury with athleticism, they often feature powerful engines, refined interiors, and advanced technology.' 
+    description: 'Grand Tourer (GT) cars are high-performance vehicles designed for long-distance driving with a focus on comfort, style, and speed. Combining luxury with athleticism, they often feature powerful engines, refined interiors, and advanced technology.'
   },
-  3: { 
-    module: './scene3.js', 
-    init: 'initScene3', 
-    audio: './sound/scene4f.mp3', 
+  3: {
+    module: './scene3.js',
+    init: 'initScene3',
+    audio: './sound/scene4f.mp3',
     name: 'Dirt Bikes',
-    description: 'Dirt bikes are lightweight motorcycles designed for off-road riding on rough terrains like dirt trails, mud, and sand. Built for durability and agility, they feature knobby tires, long suspension travel, and high ground clearance.' 
+    description: 'Dirt bikes are lightweight motorcycles designed for off-road riding on rough terrains like dirt trails, mud, and sand. Built for durability and agility, they feature knobby tires, long suspension travel, and high ground clearance.'
   },
-  4: { 
-    module: './scene4.js', 
-    init: 'initScene4', 
-    audio: './sound/scene3ff.mp3', 
+  4: {
+    module: './scene4.js',
+    init: 'initScene4',
+    audio: './sound/scene3ff.mp3',
     name: 'Drag Cars',
-    description: 'Drag cars are high-performance vehicles built for straight-line racing, typically over a quarter-mile distance. They are designed for maximum speed and acceleration, featuring powerful engines, lightweight frames, and specialized tires.' 
+    description: 'Drag cars are high-performance vehicles built for straight-line racing, typically over a quarter-mile distance. They are designed for maximum speed and acceleration, featuring powerful engines, lightweight frames, and specialized tires.'
   },
 };
 
-// Function to unlock audio (needed for autoplay)
 function unlockAudio() {
   if (!isAudioUnlocked) {
     console.log("Audio unlocked!");
     isAudioUnlocked = true;
 
-    // Resume audio context if it's suspended
     if (audioContext.state === "suspended") {
       audioContext.resume();
     }
 
-    // Now that audio is unlocked, start playing the default scene's audio
-    const savedScene = getSavedScene();  // Get the saved scene number
-    const { audio } = scenes[savedScene];  // Get the audio associated with the saved scene
+    const savedScene = getSavedScene();
+    const { audio } = scenes[savedScene];
 
     if (audio) {
-      crossfadeAudio(audio);  // Start playing the audio for the default scene
+      crossfadeAudio(audio);
     }
   }
 }
 
-// Function to remove the current scene from the DOM
 function clearScene() {
   const container = document.getElementById("my-container");
   if (!container) {
     console.error("Container element not found! Cannot clear scene.");
     return;
   }
-  container.innerHTML = ""; // Completely clear the container
+  container.innerHTML = "";
 }
 
-// Function to dispose of 3D scene resources (geometry, materials, textures)
 function dispose3DScene(sceneNumber) {
-  if (sceneCache[sceneNumber] && sceneCache[sceneNumber].dispose) {
-    sceneCache[sceneNumber].dispose(); // Call the dispose function if defined
-    delete sceneCache[sceneNumber]; // Remove from cache
-    console.log(`Scene ${sceneNumber} resources disposed.`);
+  try {
+    if (sceneCache[sceneNumber] && sceneCache[sceneNumber].dispose) {
+      sceneCache[sceneNumber].dispose();
+      delete sceneCache[sceneNumber];
+      console.log(`Scene ${sceneNumber} resources disposed.`);
+    }
+  } catch (error) {
+    console.error(`Failed to dispose resources for scene ${sceneNumber}:`, error);
   }
 }
 
-// Function to load and initialize a scene
+async function preloadScene(sceneNumber) {
+  if (!scenes[sceneNumber]) throw new Error(`Scene ${sceneNumber} not found.`);
+  const { module, audio } = scenes[sceneNumber];
+
+  const sceneModule = await import(module);
+
+  if (audio) {
+    const audioPreload = new Audio(audio);
+    audioPreload.preload = "auto";
+  }
+
+  console.log(`Scene ${sceneNumber} preloaded.`);
+}
+
 async function loadScene(sceneNumber) {
   if (!scenes[sceneNumber]) throw new Error(`Scene ${sceneNumber} not found.`);
   const { module, init, description } = scenes[sceneNumber];
@@ -89,7 +101,6 @@ async function loadScene(sceneNumber) {
   const container = document.getElementById("my-container");
   container.appendChild(sceneElement);
 
-  // Add the menu and description to the scene
   createSceneMenu(sceneElement);
   displaySceneDescription(description);
 
@@ -105,95 +116,88 @@ function displaySceneDescription(description) {
     descriptionElement = document.createElement("div");
     descriptionElement.id = "scene-description";
     descriptionElement.style.position = "absolute";
-    descriptionElement.style.top = "10px"; // Position at the bottom
-    descriptionElement.style.right = "10px"; // Align to the right
+    descriptionElement.style.top = "10px";
+    descriptionElement.style.right = "10px";
     descriptionElement.style.backgroundColor = "rgba(0, 0, 0, 0.7)";
     descriptionElement.style.color = "white";
     descriptionElement.style.padding = "10px";
     descriptionElement.style.borderRadius = "5px";
     descriptionElement.style.fontSize = "1.2em";
     descriptionElement.style.zIndex = "900";
-    descriptionElement.style.maxWidth = "330px"; // Restrict width to make wrapping easier
-    descriptionElement.style.wordWrap = "break-word"; // Ensure long words break properly
-    descriptionElement.style.overflowWrap = "break-word"; // For better browser compatibility
-    descriptionElement.style.whiteSpace = "normal"; // Allow wrapping
-    descriptionElement.style.transition = "opacity 1.5s ease"; // Add transition effect
-    descriptionElement.style.opacity = "0"; // Start as hidden
+    descriptionElement.style.maxWidth = "330px";
+    descriptionElement.style.wordWrap = "break-word";
+    descriptionElement.style.overflowWrap = "break-word";
+    descriptionElement.style.whiteSpace = "normal";
+    descriptionElement.style.transition = "opacity 1.5s ease";
+    descriptionElement.style.opacity = "0";
     document.body.appendChild(descriptionElement);
   }
 
-  descriptionElement.style.opacity = "0"; // Fade out existing description
+  descriptionElement.style.opacity = "0";
   setTimeout(() => {
     descriptionElement.textContent = description;
-    descriptionElement.style.opacity = "1"; // Fade in new description
-  }, 1500); // Delay to match fade-out duration
-
-  // Add fade-out when switching scenes
+    descriptionElement.style.opacity = "1";
+  }, 1500);
 }
 
 async function crossfadeAudio(newAudioFile) {
   if (currentAudio) {
-    currentAudio.pause();  // Immediately stop the current audio
-    currentAudio = null;  // Reset the current audio reference
-    console.log('Old audio stopped.');
+    currentAudio.pause();
+    currentAudio.src = "";
+    currentAudio = null;
+    console.log('Old audio stopped and cleared.');
   }
 
   if (newAudioFile) {
     const newAudio = new Audio(newAudioFile);
     newAudio.loop = true;
-    newAudio.play().catch(console.error);  // Start playing the new audio immediately
-
-    console.log(`New audio started: ${newAudioFile}`);
-
-    currentAudio = newAudio;  // Set the new audio as the current audio
+    try {
+      await newAudio.play();
+      console.log(`New audio started: ${newAudioFile}`);
+      currentAudio = newAudio;
+    } catch (error) {
+      console.error('Failed to play new audio:', error);
+    }
   }
 }
 
+let transitionTimeout = null;
+
 async function switchScene(sceneNumber) {
+  if (transitionTimeout) clearTimeout(transitionTimeout);
+
   const container = document.getElementById("my-container");
   if (!container) {
     console.error("Container not found!");
     return;
   }
 
-  // Add fade-out effect
   container.style.transition = "opacity 2s, background-color 2s";
   container.style.opacity = "0";
   container.style.backgroundColor = "black";
 
-  await new Promise((resolve) => setTimeout(resolve, 2000)); // Wait for the fade-out duration
+  transitionTimeout = setTimeout(async () => {
+    if (currentScene !== null) dispose3DScene(currentScene);
+    clearScene();
 
-  // Dispose and clear previous scenes
-  if (currentScene !== null) dispose3DScene(currentScene);
-  clearScene();
+    try {
+      const sceneElement = await loadScene(sceneNumber);
+      sceneElement.style.display = "block";
+      currentScene = sceneNumber;
 
-  // Load the new scene
-  try {
-    const sceneElement = await loadScene(sceneNumber);
-    sceneElement.style.display = "block";
-    currentScene = sceneNumber;
+      const { audio } = scenes[sceneNumber];
+      if (audio && isAudioUnlocked) {
+        crossfadeAudio(audio);
+      }
 
-    // Play the audio for the new scene if available
-    const { audio } = scenes[sceneNumber];
-    console.log(`Switching to scene ${sceneNumber}, audio: ${audio}`);  // Debugging line
-    if (audio && isAudioUnlocked) {
-      crossfadeAudio(audio);  // Play the new audio immediately
+      saveCurrentScene(sceneNumber);
+
+      container.style.transition = "opacity 2s";
+      container.style.opacity = "1";
+    } catch (error) {
+      console.error("Error switching scene:", error);
     }
-
-    saveCurrentScene(sceneNumber);  // Save the current scene to localStorage
-
-    // Add fade-in effect
-    container.style.opacity = "0"; // Ensure opacity is 0 before starting fade-in
-    container.style.backgroundColor = "black";
-    await new Promise((resolve) => setTimeout(resolve, 300)); // Small delay to trigger CSS transition
-
-    container.style.transition = "opacity 2s";
-    container.style.opacity = "1";
-    container.style.backgroundColor = "black";
-
-  } catch (error) {
-    console.error("Error switching scene:", error);
-  }
+  }, 2000);
 }
 
 function saveCurrentScene(sceneNumber) {

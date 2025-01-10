@@ -1,21 +1,16 @@
 import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.124/build/three.module.js";
 import { OrbitControls } from "https://cdn.jsdelivr.net/npm/three@0.124/examples/jsm/controls/OrbitControls.js";
 import { GLTFLoader } from "https://cdn.jsdelivr.net/npm/three@0.124/examples/jsm/loaders/GLTFLoader.js";
-import { createNoise2D } from "https://cdn.jsdelivr.net/npm/simplex-noise/dist/esm/simplex-noise.js";
-let currentScene = "Dirt Bikes";
-const raycaster = new THREE.Raycaster();
-const mouse = new THREE.Vector2();
+
 const animationMixers = [];
 const clock = new THREE.Clock();
 
 let scene, camera, renderer, orbitControls, particles, planeMesh;
-let audioListener, backgroundMusic, audioLoader;
-let isPlaying = false;
+let audioListener;
 const particleNum = 1000;
 const maxRange = 500;
 const minRange = maxRange / 2;
 const textureSize = 30.0;
-const noise = createNoise2D();
 
 function setupSkybox() {
   const loader = new THREE.CubeTextureLoader();
@@ -172,7 +167,6 @@ function setupHelmet() {
   );
 }
 
-
 function setupBrandon() {
   const gltfLoader = new GLTFLoader();
   const snowmanModelPath = "./assets/brandon1/scene.gltf";
@@ -198,8 +192,6 @@ function setupBrandon() {
     }
   );
 }
-
-
 
 function drawRadialGradation(ctx, canvasRadius, canvasW, canvasH) {
   ctx.save();
@@ -300,9 +292,9 @@ export function initScene3() {
   orbitControls.maxDistance = 380;
   orbitControls.dampingFactor = 0.5;
 
-  orbitControls.minPolarAngle = Math.PI / 4;    // Limit vertical rotation (down)
-  orbitControls.maxPolarAngle = Math.PI / 2;    // Limit vertical rotation (up)
-    
+  orbitControls.minPolarAngle = Math.PI / 4; // Limit vertical rotation (down)
+  orbitControls.maxPolarAngle = Math.PI / 2; // Limit vertical rotation (up)
+
   orbitControls.update();
 
   const planeGeometry = new THREE.PlaneGeometry(0, 0, 50, 50);
@@ -362,6 +354,13 @@ export function initScene3() {
 
   window.addEventListener("resize", onResize);
   document.getElementById("my-container").appendChild(renderer.domElement);
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "r") {
+      // Reset camera
+      camera.position.set(800, 50, 150);
+      orbitControls.update();
+    }
+  });
   requestAnimationFrame(render);
 }
 
