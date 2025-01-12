@@ -183,6 +183,7 @@ function setupBrandon() {
         const mixer = new THREE.AnimationMixer(model);
         const action = mixer.clipAction(gltf.animations[0]);
         action.play();
+        action.timeScale = 1.1;
         animationMixers.push(mixer);
       }
     },
